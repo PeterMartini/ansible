@@ -205,8 +205,7 @@ class ActionBase(with_metaclass(ABCMeta, object)):
         '''
         Create and return a temporary path on a remote box.
         '''
-
-        basefile = 'ansible-tmp-%s-%s' % (time.time(), random.randint(0, 2**48))
+        basefile = 'ansible-tmp-%s' % self._task._uuid
         use_system_tmp = False
 
         if self._play_context.become and self._play_context.become_user not in ('root', remote_user):
